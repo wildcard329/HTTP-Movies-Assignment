@@ -25,9 +25,9 @@ const UpdateMovie = props => {
             [e.target.name]: value
         });
     }
-
+    console.log("form",props)
     useEffect(() => {
-        const movieToUpdate = props.movies.find(e => `${e.id}` === id);
+        const movieToUpdate = props.movieList.find(e => `${e.id}` === id);
         if (movieToUpdate) {
             setMovie(movieToUpdate);
         }
@@ -38,7 +38,7 @@ const UpdateMovie = props => {
         axios
             .put(`http://localhost:5000/api/movies/${id}`, movie)
             .then(res => {
-                props.setMovie(res.data);
+                setMovie(res.data);
                 push(`/movies-list${id}`);
             })
             .catch(err => console.log(err));
@@ -69,6 +69,7 @@ const UpdateMovie = props => {
                     placeholder="metascore"
                     value={movie.metascore}
                 />
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
