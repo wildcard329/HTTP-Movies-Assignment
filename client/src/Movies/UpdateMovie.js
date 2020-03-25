@@ -5,7 +5,8 @@ import axios from 'axios';
 const initialMovie = {
     title: '',
     director: '',
-    metascore: ''
+    metascore: '',
+    stars: []
 }
 
 const UpdateMovie = props => {
@@ -39,7 +40,7 @@ const UpdateMovie = props => {
             .put(`http://localhost:5000/api/movies/${id}`, movie)
             .then(res => {
                 setMovie(res.data);
-                push(`/movies-list${id}`);
+                push(`/movies-list`);
             })
             .catch(err => console.log(err));
     }
