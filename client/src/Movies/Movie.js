@@ -7,7 +7,6 @@ function Movie({ addToSavedList, getMovieList }) {
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
   const {push} = useHistory();
-  const {id} = useParams();
   
   const fetchMovie = id => {
     axios
