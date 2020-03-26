@@ -31,8 +31,9 @@ const UpdateMovie = props => {
         const movieToUpdate = props.movieList.find(e => `${e.id}` === id);
         if (movieToUpdate) {
             setMovie(movieToUpdate);
+            console.log('useeffect',movieToUpdate)
         }
-    }, [props.movies, id])
+    }, [props.movieList, id])
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -40,7 +41,16 @@ const UpdateMovie = props => {
             .put(`http://localhost:5000/api/movies/${id}`, movie)
             .then(res => {
                 setMovie(res.data);
-                push(`/movies-list`);
+                console.log('submit',props.movieList)
+                const newMoviesArray = props.movieList.map(e => {
+                    if (`${e.id}` === id) {
+                        return movie
+                    } else {
+                        return e;
+                    }
+                })
+                props.setMovieList(newMoviesArray)
+                push(`/`);
             })
             .catch(err => console.log(err));
     }
