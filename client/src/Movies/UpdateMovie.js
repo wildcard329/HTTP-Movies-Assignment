@@ -40,17 +40,9 @@ const UpdateMovie = props => {
         axios
             .put(`http://localhost:5000/api/movies/${id}`, movie)
             .then(res => {
-                setMovie(res.data);
-                console.log('submit',props.movieList)
-                const newMoviesArray = props.movieList.map(e => {
-                    if (`${e.id}` === id) {
-                        return movie
-                    } else {
-                        return e;
-                    }
-                })
-                props.setMovieList(newMoviesArray)
-                push(`/`);
+                console.log(res)
+                props.getMovieList()
+                push('/')
             })
             .catch(err => console.log(err));
     }
